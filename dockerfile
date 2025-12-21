@@ -1,12 +1,16 @@
-FROM  node:18.19.1
+FROM node:18.19.1
 
 WORKDIR /app
 
+# Copy package.json first to install dependencies
 COPY package.json .
 RUN npm install
+
+# Copy the src directory and other files
+COPY ./src ./src
 COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index.js"]
-
+# Run the application, pointing to the correct path for index.js
+CMD ["node", "/src/index.js"]
