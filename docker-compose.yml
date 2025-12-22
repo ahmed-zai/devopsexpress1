@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  express-app:
+    image: expimages
+    container_name: exp
+    build: .
+    volumes:
+      - ./src:/app/src:ro
+    ports:
+      - "5000:5000" 

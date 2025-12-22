@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 5000
 
 # Run the application, pointing to the correct path for index.js
-CMD ["node", "/src/index.js"]
+CMD ["npx", "nodemon", "src/index.js"]

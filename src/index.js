@@ -8,7 +8,7 @@ app.use(express.json());
 
 // Test route
 app.get('/', (req, res) => {
-  res.send('Express server is running 🚀');
+  res.send('Express server is running 🚀, hi hi ');
 });
 
 // Start server
