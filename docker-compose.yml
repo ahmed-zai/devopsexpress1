@@ -4,8 +4,9 @@ services:
   express-app:
     image: expimages
     container_name: exp
-    build: .
-    volumes:
-      - ./src:/app/src:ro
+    build: . 
+    
     ports:
       - "5000:5000" 
+    env_file:
+      - .env 
