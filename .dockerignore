@@ -1,6 +1,5 @@
 dockerfile 
 docker-compose.yml 
 node_modules 
-.env 
 docker-compose-dev.yml
 docker-compose-pro.yml

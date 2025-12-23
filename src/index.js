@@ -1,9 +1,22 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
 
 const app = express();
 
 dotenv.config();
+
+const dbuser = process.env.DB_USER;
+const dbpassword = process.env.DB_PASSWORD;
+const dbhost = process.env.DB_HOST;
+const dbport = process.env.DB_PORT;
+
+const url = `mongodb://${dbuser}:${dbpassword}@${dbhost}:${dbport}`;
+mongoose
+        .connect(url)
+        .then(() => console.log('connected to mangodb'))
+        .catch((err) => console.log(err));
 
 
 
