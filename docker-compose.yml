@@ -12,6 +12,7 @@ services:
     depends_on:
       - mongo
       - redis
+      - postgres
 
   mongo:
     image: mongo
@@ -52,9 +53,21 @@ services:
       - express-app 
       
     
-    
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env 
+    volumes:
+      -  postgress-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${PD_PASSWORD}
+      POSTGRES_USER: ${PD_USER}
 
 
 
 volumes:
     mongo-db:
+    postgress-db:

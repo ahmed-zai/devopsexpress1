@@ -1,7 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { createClient } from 'redis'
+import { createClient } from 'redis';
+import pkg from 'pg';
+
+const { Pool } = pkg;
 
 
 const app = express();
@@ -39,8 +42,29 @@ mongoose
 
 
 
+// connect to postgres db 
 
+const pool = new Pool ({
+  host:process.env.PD_HOST ,
+  port:process.env.PD_PORT ,
+  user:process.env.PD_USER ,
+  password:process.env.PD_PASSWORD ,
+});
+ const testConnection = async () => {
+  try {
+    console.log("⏳ Trying to connect to PostgreSQL...");
+    await pool.connect();
+    console.log("✅ PostgreSQL connected successfully");
 
+    
+
+  } catch (error) {
+    console.log("❌ PostgreSQL connection failed");
+    console.log(error.message);
+  }
+};
+
+await testConnection();
 // Test route
 app.get('/', async (req, res) => {
     await redisClient.set("greeting", "Hello from Redis");
